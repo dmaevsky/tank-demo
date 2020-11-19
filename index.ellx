@@ -46,7 +46,13 @@ layout:
       "node": "$7"
     },,,,,,
     {
-      "node": "data"
+      "node": "data",
+      "expansion": {
+        "vertical": true,
+        "secondary": true,
+        "height": 30,
+        "width": 2
+      }
     }
   ],,,
   [,
