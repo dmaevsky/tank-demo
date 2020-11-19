@@ -1,0 +1,57 @@
+version: 1.1
+nodes:
+  $3 = button({ label: running ? "pause" : "run", dense: true, onClick: running ? stop : start  })
+  $4 = button({ label: "reset", dense: true, onClick: reset  })
+  $store = store
+  running = $store.running
+  level = $store.level
+  inletFlowRate = slider({ step: 0.01, value: 85 })
+  $7 = subscribe(inletFlowRate, setInletFlowRate)
+  data = $store.data
+  graph = plot(data, encoding)
+layout:
+[,
+  [,
+    {
+      "node": "$3"
+    },,
+    {
+      "node": "$4"
+    },,,,
+    {
+      "node": "$store",
+      "expansion": {
+        "vertical": true,
+        "labelsLeft": true,
+        "secondary": false,
+        "labelsTop": false,
+        "height": 4,
+        "width": 1
+      }
+    },,
+    {
+      "node": "running"
+    }
+  ],,
+  [,,,,,,,,,
+    {
+      "node": "level"
+    }
+  ],
+  [,
+    {
+      "node": "inletFlowRate"
+    },,
+    {
+      "node": "$7"
+    },,,,,,
+    {
+      "node": "data"
+    }
+  ],,,
+  [,
+    {
+      "node": "graph"
+    }
+  ]
+]
